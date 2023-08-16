@@ -1,0 +1,7 @@
+---
+# tasks file for nutanix_role_nutanix_dns
+- import_tasks: setup_api.yml
+- import_tasks: ntp.yml
+- include_tasks: debug.yml
+  when:
+    - nutanix_debug

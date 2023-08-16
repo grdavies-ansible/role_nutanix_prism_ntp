@@ -1,0 +1,15 @@
+---
+- hosts: localhost
+  gather_facts: false
+  roles:
+    - role: ../..
+  vars:
+    nutanix_host: 10.38.179.39
+    nutanix_username: admin
+    nutanix_password: nx2Tech283!
+    # nutanix_debug: True
+    nutanix_ntp_server_list:
+      - 0.pool.ntp.org
+      - 1.pool.ntp.org
+      - 2.pool.ntp.org
+      - 3.pool.ntp.org

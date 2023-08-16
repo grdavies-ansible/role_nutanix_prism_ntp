@@ -1,0 +1,9 @@
+---
+  - name: Debug ntp.yml variables
+    debug:
+      var: "{{ item }}"
+    loop:
+      - nutanix_ntp_server_list
+      - nutanix_ntp_current_config.json | default('')
+      - nutanix_ntp_remove_entry.results | default('')
+      - nutanix_ntp_add_entry.results | default('')
