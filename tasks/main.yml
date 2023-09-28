@@ -1,12 +1,15 @@
 ---
-# tasks file for nutanix_role_nutanix_dns
+# tasks file for role_nutanix_prism_ntp
 - name: Setup connection to Nutanix API
-  ansible.builtin.include_tasks: setup_api.yml
+  ansible.builtin.include_role:
+    name: grdavies.role_nutanix_prism_api
+  vars:
+    role_nutanix_prism_api_host: "{{ role_nutanix_prism_ntp_host }}"
+    role_nutanix_prism_api_username: "{{ role_nutanix_prism_ntp_username }}"
+    role_nutanix_prism_api_password: "{{ role_nutanix_prism_ntp_password }}"
+    role_nutanix_prism_api_port: "{{ role_nutanix_prism_ntp_port | default(omit) }}"
+    role_nutanix_prism_api_validate_certs: "{{ role_nutanix_prism_ntp_validate_certs | default(omit) }}"
+    role_nutanix_prism_api_debug: "{{ role_nutanix_prism_ntp_debug | default(omit) }}"
 
 - name: Configure NTP
   ansible.builtin.import_tasks: ntp.yml
-
-- name: Debug
-  ansible.builtin.include_tasks: debug.yml
-  when:
-    - nutanix_debug

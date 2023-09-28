@@ -5,18 +5,19 @@ This Ansible role sets the NTP server configuration for Prism Element and Prism 
 
 ## Role Variables
 
-| Variable                 | Required | Default | Choices                                                                         | Comments                                                                                                                                           |
-|--------------------------|----------|---------|---------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------|
-| nutanix_host             | yes      |         |                                                                                 | The IP address or FQDN for the Prism (Element or Central) to which you want to connect.                                                            |
-| nutanix_username         | yes      |         |                                                                                 | A valid username with appropriate rights to access the Nutanix API.                                                                                |
-| nutanix_password         | yes      |         |                                                                                 | A valid password for the supplied username.                                                                                                        |
-| nutanix_port             | no       | 9440    |                                                                                 | The Prism TCP port.                                                                                                                                |
-| validate_certs           | no       | no      | yes / no                                                                        | Whether to check if Prism UI certificates are valid.                                                                                               |
-| nutanix_ntp_server_list    | yes      | []      |                                                                                 | Provide a list of NTP servers; ["0.pool.ntp.org", "1.pool.ntp.org", "2.pool.ntp.org", "3.pool.ntp.org"].                                                                                 |
+| Variable                              | Required | Default | Choices                                                                         | Comments                                                                                                                                           |
+|---------------------------------------|----------|---------|---------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------|
+| role_nutanix_prism_ntp_host           | yes      |         |                                                                                 | The IP address or FQDN for the Prism (Element or Central) to which you want to connect.                                                            |
+| role_nutanix_prism_ntp_username       | yes      |         |                                                                                 | A valid username with appropriate rights to access the Nutanix API.                                                                                |
+| role_nutanix_prism_ntp_password       | yes      |         |                                                                                 | A valid password for the supplied username.                                                                                                        |
+| role_nutanix_prism_ntp_port           | no       | 9440    |                                                                                 | The Prism TCP port.                                                                                                                                |
+| role_nutanix_prism_ntp_validate_certs | no       | false   | true / false                                                                    | Whether to check if Prism UI certificates are valid.                                                                                               |
+| role_nutanix_prism_ntp_debug          | no       | false   | true / false                                                                    | Whether to check if Prism UI certificates are valid.                                                                                               |
+| role_nutanix_prism_ntp_list           | yes      | []      |                                                                                 | Provide a list of NTP servers; ["0.pool.ntp.org", "1.pool.ntp.org", "2.pool.ntp.org", "3.pool.ntp.org"].                                                                                 |
 
 ## Dependencies
 
-NA
+- grdavies.role_nutanix_prism_api
 
 ## Example Playbook
 
@@ -26,9 +27,9 @@ NA
   roles:
     - role: grdavies.role_nutanix_prism_ntp
   vars:
-    nutanix_host: 10.38.185.37
-    nutanix_username: admin
-    nutanix_password: nx2Tech165!
+    role_nutanix_prism_ntp_host: 10.38.185.37
+    role_nutanix_prism_ntp_username: admin
+    role_nutanix_prism_ntp_password: nx2Tech165!
     prism_ntp_server_list:
       - 0.pool.ntp.org
       - 1.pool.ntp.org

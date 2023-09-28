@@ -2,41 +2,56 @@
 # tasks file for nutanix_role_nutanix_ntp
 - name: Get current NTP configuration
   ansible.builtin.uri:
-    url: "https://{{ nutanix_host }}:{{ nutanix_port }}/PrismGateway/services/rest/v2.0/cluster/ntp_servers"
+    url: "https://{{ role_nutanix_prism_api_url_base }}/PrismGateway/services/rest/v2.0/cluster/ntp_servers"
     method: GET
-    validate_certs: "{{ validate_certs }}"
+    validate_certs: "{{ role_nutanix_prism_ntp_validate_certs }}"
     body_format: json
     headers:
-      Authorization: "{{ nutanix_api_auth }}"
+      Authorization: "{{ role_nutanix_prism_api_auth_string_b64 }}"
     return_content: true
-  register: nutanix_ntp_current_config
+  register: role_nutanix_prism_ntp_current_config
+
+- name: Debug role_nutanix_prism_ntp_current_config
+  ansible.builtin.debug:
+    msg: "{{ role_nutanix_prism_ntp_current_config }}"
+  when: role_nutanix_prism_ntp_debug
 
 - name: Remove configured NTP server if not provided
   ansible.builtin.uri:
-    url: "https://{{ nutanix_host }}:{{ nutanix_port }}/PrismGateway/services/rest/v2.0/cluster/ntp_servers/{{ item }}"
+    url: "https://{{ role_nutanix_prism_api_url_base }}/PrismGateway/services/rest/v2.0/cluster/ntp_servers/{{ item }}"
     method: DELETE
-    validate_certs: "{{ validate_certs }}"
+    validate_certs: "{{ role_nutanix_prism_ntp_validate_certs }}"
     headers:
-      Authorization: "{{ nutanix_api_auth }}"
+      Authorization: "{{ role_nutanix_prism_api_auth_string_b64 }}"
     return_content: true
     status_code: 204
   when:
-    - item not in nutanix_ntp_server_list
-  register: nutanix_ntp_remove_entry
-  loop: "{{ nutanix_ntp_current_config.json }}"
+    - item not in role_nutanix_prism_ntp_list
+  register: role_nutanix_prism_ntp_remove_entry
+  loop: "{{ role_nutanix_prism_ntp_current_config.json }}"
+
+- name: Debug role_nutanix_prism_ntp_remove_entry
+  ansible.builtin.debug:
+    msg: "{{ role_nutanix_prism_ntp_remove_entry }}"
+  when: role_nutanix_prism_ntp_debug
 
 - name: Add NTP server
   ansible.builtin.uri:
-    url: "https://{{ nutanix_host }}:{{ nutanix_port }}/PrismGateway/services/rest/v2.0/cluster/ntp_servers"
+    url: "https://{{ role_nutanix_prism_api_url_base }}/PrismGateway/services/rest/v2.0/cluster/ntp_servers"
     method: POST
-    validate_certs: "{{ validate_certs }}"
+    validate_certs: "{{ role_nutanix_prism_ntp_validate_certs }}"
     body:
       value: "{{ item }}"
     body_format: json
     headers:
-      Authorization: "{{ nutanix_api_auth }}"
+      Authorization: "{{ role_nutanix_prism_api_auth_string_b64 }}"
     return_content: true
     status_code: 200,201
-  register: nutanix_ntp_add_entry
-  loop: "{{ nutanix_ntp_server_list }}"
-  when: item not in nutanix_ntp_current_config.json
+  register: role_nutanix_prism_ntp_add_entry
+  loop: "{{ role_nutanix_prism_ntp_list }}"
+  when: item not in role_nutanix_prism_ntp_current_config.json
+
+- name: Debug role_nutanix_prism_ntp_add_entry
+  ansible.builtin.debug:
+    msg: "{{ role_nutanix_prism_ntp_add_entry }}"
+  when: role_nutanix_prism_ntp_debug

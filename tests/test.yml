@@ -4,12 +4,9 @@
   roles:
     - role: ../..
   vars:
-    nutanix_host: 10.38.179.39
-    nutanix_username: admin
-    nutanix_password: nx2Tech283!
-    # nutanix_debug: True
-    nutanix_ntp_server_list:
-      - 0.pool.ntp.org
-      - 1.pool.ntp.org
-      - 2.pool.ntp.org
-      - 3.pool.ntp.org
+    role_nutanix_prism_ntp_host: 10.38.67.37
+    role_nutanix_prism_ntp_username: admin
+    role_nutanix_prism_ntp_password: nx2Tech454!
+    role_nutanix_prism_ntp_debug: false
+    role_nutanix_prism_ntp_list:
+      - 10.42.194.10

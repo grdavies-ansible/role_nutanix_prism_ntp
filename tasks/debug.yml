@@ -3,7 +3,7 @@
   ansible.builtin.debug:
     var: "{{ item }}"
   loop:
-    - nutanix_ntp_server_list
-    - nutanix_ntp_current_config.json | default('')
-    - nutanix_ntp_remove_entry.results | default('')
-    - nutanix_ntp_add_entry.results | default('')
+    - role_nutanix_prism_ntp_list
+    - role_nutanix_prism_ntp_current_config.json | default('')
+    - role_nutanix_prism_ntp_remove_entry.results | default('')
+    - role_nutanix_prism_ntp_add_entry.results | default('')
