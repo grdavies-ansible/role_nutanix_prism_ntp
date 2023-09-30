@@ -5,8 +5,8 @@
     - role: ../..
   vars:
     role_nutanix_prism_ntp_host: 10.38.67.37
-    role_nutanix_prism_ntp_username: admin
-    role_nutanix_prism_ntp_password: nx2Tech454!
+    role_nutanix_prism_ntp_host_username: admin
+    role_nutanix_prism_ntp_host_password: nx2Tech454!
     role_nutanix_prism_ntp_debug: false
     role_nutanix_prism_ntp_list:
       - 10.42.194.10

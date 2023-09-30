@@ -1,9 +1,9 @@
 ---
 # defaults file for nutanix_role_nutanix_ntp
 role_nutanix_prism_ntp_host: ""
-role_nutanix_prism_ntp_username: ""
-role_nutanix_prism_ntp_password: ""
-role_nutanix_prism_ntp_port: 9440
-role_nutanix_prism_ntp_validate_certs: false
+role_nutanix_prism_ntp_host_username: ""
+role_nutanix_prism_ntp_host_password: ""
+role_nutanix_prism_ntp_host_port: 9440
+role_nutanix_prism_ntp_host_validate_certs: false
 role_nutanix_prism_ntp_debug: false
 role_nutanix_prism_ntp_list: []

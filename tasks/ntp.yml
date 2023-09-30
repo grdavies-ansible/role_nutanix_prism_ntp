@@ -4,7 +4,7 @@
   ansible.builtin.uri:
     url: "https://{{ role_nutanix_prism_api_url_base }}/PrismGateway/services/rest/v2.0/cluster/ntp_servers"
     method: GET
-    validate_certs: "{{ role_nutanix_prism_ntp_validate_certs }}"
+    validate_certs: "{{ role_nutanix_prism_ntp_host_validate_certs }}"
     body_format: json
     headers:
       Authorization: "{{ role_nutanix_prism_api_auth_string_b64 }}"
@@ -20,7 +20,7 @@
   ansible.builtin.uri:
     url: "https://{{ role_nutanix_prism_api_url_base }}/PrismGateway/services/rest/v2.0/cluster/ntp_servers/{{ item }}"
     method: DELETE
-    validate_certs: "{{ role_nutanix_prism_ntp_validate_certs }}"
+    validate_certs: "{{ role_nutanix_prism_ntp_host_validate_certs }}"
     headers:
       Authorization: "{{ role_nutanix_prism_api_auth_string_b64 }}"
     return_content: true
@@ -39,7 +39,7 @@
   ansible.builtin.uri:
     url: "https://{{ role_nutanix_prism_api_url_base }}/PrismGateway/services/rest/v2.0/cluster/ntp_servers"
     method: POST
-    validate_certs: "{{ role_nutanix_prism_ntp_validate_certs }}"
+    validate_certs: "{{ role_nutanix_prism_ntp_host_validate_certs }}"
     body:
       value: "{{ item }}"
     body_format: json
