@@ -2,7 +2,6 @@
 
 This Ansible role sets the NTP server configuration for Prism Element and Prism Central.
 
-
 ## Role Variables
 
 | Variable                                   | Required | Default | Choices                                                                         | Comments                                                                                                                                           |
@@ -21,7 +20,7 @@ This Ansible role sets the NTP server configuration for Prism Element and Prism 
 
 ## Example Playbook
 
-```
+```YAML
 - hosts: localhost
   gather_facts: false
   roles:
@@ -36,7 +35,6 @@ This Ansible role sets the NTP server configuration for Prism Element and Prism 
       - 2.pool.ntp.org
       - 3.pool.ntp.org
 ```
-
 
 ## License
 
